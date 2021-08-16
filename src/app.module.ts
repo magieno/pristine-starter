@@ -11,11 +11,19 @@ import {AwsXrayModule} from "@pristine-ts/aws-xray";
 import {Auth0Module} from "@pristine-ts/auth0";
 import {HttpModule} from "@pristine-ts/http";
 import {StripeModule} from "@pristine-ts/stripe";
+import {DogRepository} from "./repositories/dog.repository";
 
 export const AppModuleKeyname =  "pristine.starter";
 
 export const AppModule: AppModuleInterface = {
+    //
+    // IMPORTANT
+    // Do not forget to import all of your services here to make sure they are available.
+    //
     importServices: [
+
+        // Repositories
+        DogRepository,
     ],
     importModules: [
         AwsModule,
