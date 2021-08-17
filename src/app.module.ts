@@ -24,6 +24,9 @@ export const AppModule: AppModuleInterface = {
 
         // Repositories
         DogRepository,
+
+        // Voters
+        DogVoter
     ],
     importModules: [
         AwsModule,
