@@ -1,5 +1,5 @@
 import {ResourceActionEnum, VoteEnum, VoterInterface} from "@pristine-ts/security";
-import {ServiceDefinitionTagEnum, tag} from "@pristine-ts/common";
+import {IdentityInterface, ServiceDefinitionTagEnum, tag} from "@pristine-ts/common";
 import {injectable} from "tsyringe";
 import {DogModel} from "../models/dog.model";
 import {DogVoteSubject} from "../vote-subjects/dog.vote-subject";
@@ -24,7 +24,7 @@ export class DogVoter implements VoterInterface {
         }
     }
 
-    async vote(identity: UserIdentityInterface, action: string, resource: object): Promise<VoteEnum> {
+    async vote(identity: IdentityInterface, action: string, resource: object): Promise<VoteEnum> {
         if (identity.roles && identity.roles.includes(IdentityRoleEnum.Admin)) {
             return VoteEnum.Grant;
         }

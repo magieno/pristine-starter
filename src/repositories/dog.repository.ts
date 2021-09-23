@@ -33,4 +33,8 @@ export class DogRepository {
     public async findByRace(race: string): Promise<DogModel[]>{
         return this.dynamodbClient.findBySecondaryIndex(DogModel, {race}, 'raceIndex');
     }
+
+    public async findByOwner(ownerId: string): Promise<DogModel[]>{
+        return this.dynamodbClient.findBySecondaryIndex(DogModel, {ownerId}, 'ownerIdIndex');
+    }
 }

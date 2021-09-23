@@ -10,6 +10,8 @@ export class DogModel {
     @attribute()
     race: string;
     @attribute()
+    ownerId: string;
+    @attribute()
     createdAt: Date;
     @attribute()
     updatedAt: Date;
