@@ -1,8 +1,8 @@
 import "reflect-metadata";
-import {AppModule} from './app.module';
+import { AppModule, AppModuleKeyname } from './app.module';
 import {Kernel} from "@pristine-ts/core";
 import {Context} from "aws-lambda";
-import {AwsModule, RequestMapper, ResponseMapper} from "@pristine-ts/aws";
+import { AwsModule, AwsModuleKeyname, RequestMapper, ResponseMapper } from "@pristine-ts/aws";
 import {LogHandler} from "@pristine-ts/logging";
 import {EnvironmentVariableResolver} from "@pristine-ts/configuration";
 
@@ -77,7 +77,7 @@ export const bootstrapKernel = async () => {
     const kernel = new Kernel();
     await kernel.init(AppModule,
         {
-            [AwsModule.keyname + ".region"] : await (new EnvironmentVariableResolver("REGION").resolve()),
+            [`${AwsModuleKeyname}.region`] : await (new EnvironmentVariableResolver("REGION").resolve()),
         }
     );
 

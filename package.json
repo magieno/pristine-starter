@@ -13,12 +13,12 @@
     "bundle": "rollup -c rollup.config.js --compact",
     "bundle:min": "rollup -c rollup.min.config.js --compact",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start:prod": "node dist/main",
+    "start:prod": "ts-node --project tsconfig.cjs.json ./src/main.ts",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "express": "ts-node ./src/express.ts"
+    "express": " REGION=us-east-1 NAMESPACE=app.ca ts-node --project tsconfig.cjs.json ./src/express.ts"
   },
   "dependencies": {
     "@awslabs-community-fork/dynamodb-data-mapper": "^0.7.13",
