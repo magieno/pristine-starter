@@ -3,6 +3,8 @@ import {IdentityInterface, ServiceDefinitionTagEnum, tag} from "@pristine-ts/com
 import {injectable} from "tsyringe";
 import {DogModel} from "../models/dog.model";
 import {DogVoteSubject} from "../vote-subjects/dog.vote-subject";
+import { UserIdentityInterface } from "../interfaces/user-identity.interface";
+import { IdentityRoleEnum } from "../enums/identity-role.enum";
 
 @tag(ServiceDefinitionTagEnum.Voter)
 @injectable()
@@ -24,7 +26,7 @@ export class DogVoter implements VoterInterface {
         }
     }
 
-    async vote(identity: IdentityInterface, action: string, resource: object): Promise<VoteEnum> {
+    async vote(identity: UserIdentityInterface, action: string, resource: object): Promise<VoteEnum> {
         if (identity.roles && identity.roles.includes(IdentityRoleEnum.Admin)) {
             return VoteEnum.Grant;
         }
