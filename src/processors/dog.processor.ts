@@ -12,8 +12,10 @@ export class DogProcessor {
     ) {
     }
 
-    async create(dogCreationOrUpdateOptions: DogCreationOrUpdateOptions): Promise<DogModel>{
+    async create(ownerId: string, dogCreationOrUpdateOptions: DogCreationOrUpdateOptions): Promise<DogModel>{
         const dog = await this.dogCreationOrUpdateOptionsMapper.map(dogCreationOrUpdateOptions);
+        dog.ownerId = ownerId;
+
         return this.dogRepository.create(dog);
     }
 

@@ -23,8 +23,8 @@ export class DogManager {
         return this.dogRepository.findByRace(race);
     }
 
-    create(dogCreationOrUpdateOptions: DogCreationOrUpdateOptions): Promise<DogModel>{
-        return this.dogProcessor.create(dogCreationOrUpdateOptions);
+    create(ownerId: string, dogCreationOrUpdateOptions: DogCreationOrUpdateOptions): Promise<DogModel>{
+        return this.dogProcessor.create(ownerId, dogCreationOrUpdateOptions);
     }
 
     update(customer: DogModel, dogCreationOrUpdateOptions: DogCreationOrUpdateOptions): Promise<DogModel>{
