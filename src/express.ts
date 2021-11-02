@@ -1,7 +1,9 @@
 import "reflect-metadata";
 import {RequestMapper, ResponseMapper} from "@pristine-ts/express";
 import {Kernel} from "@pristine-ts/core";
-import {AppModule} from "./app.module";
+import { AppModule, AppModuleKeyname } from "./app.module";
+import { AwsModuleKeyname } from "@pristine-ts/aws";
+import { EnvironmentVariableResolver } from "@pristine-ts/configuration";
 
 const express = require('express')
 const app = express()
@@ -17,7 +19,16 @@ const bootstrap = () => {
     })
 
     app.listen(port, async () => {
-        await kernel.init(AppModule);
+        try {
+            await kernel.init(AppModule,
+                {
+                    [`${AwsModuleKeyname}.region`]: await (new EnvironmentVariableResolver("REGION").resolve()),
+                }
+            );
+        } catch (e) {
+            console.log(e);
+            throw e;
+        }
 
         console.log(`Pristine starter listening at http://localhost:${port}`)
     })
